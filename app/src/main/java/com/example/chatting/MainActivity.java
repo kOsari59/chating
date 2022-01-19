@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText et_ID;
     EditText et_PASS;
-    Button btlogin;
+    Button btlogin ,btsign;
     boolean bl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         et_ID = findViewById(R.id.et_ID);
         et_PASS = findViewById(R.id.et_PASS);
         btlogin = findViewById(R.id.btn_login);
+        btsign = findViewById(R.id.btn_sign);
 
 
         btlogin.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
                 queue.add(loginRequest);// 큐로 던지기
             }
 
+        });
+
+        btsign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this,activity_sign.class);
+                startActivity(it);
+            }
         });
     }
 }
