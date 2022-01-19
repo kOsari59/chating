@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Chatting"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
