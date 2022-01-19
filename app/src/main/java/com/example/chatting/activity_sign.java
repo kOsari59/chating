@@ -93,34 +93,38 @@ public class activity_sign extends AppCompatActivity {
         btn_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userID = et_id.getText().toString(); //id저장
-                String userPass = et_pw.getText().toString(); // pw 저장
-                Response.Listener<String> responseListener = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
-                            System.out.println("hongchul" + response);
 
-                            JSONObject jsonObject = new JSONObject(response); //JSON으로 출력된 값을 불러오기
-                            boolean success = jsonObject.getBoolean("success"); // 그값중 success가 참이면 실행
-                            if (success) { // 로그인에 성공한 경우
+                if (idcheck == true && passcheck == true) {
+                    String userID = et_id.getText().toString(); //id저장
+                    String userPass = et_pw.getText().toString(); // pw 저장
+                    Response.Listener<String> responseListener = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
 
-                                Toast.makeText(getApplicationContext(),"계정 생성에 성공하였습니다.",Toast.LENGTH_SHORT).show();
-                                finish(); //액티비티 닫기
+                                JSONObject jsonObject = new JSONObject(response); //JSON으로 출력된 값을 불러오기
+                                boolean success = jsonObject.getBoolean("success"); // 그값중 success가 참이면 실행
+                                if (success) { // 로그인에 성공한 경우
 
-                            } else { // 로그인에 실패한 경우
-                                Toast.makeText(getApplicationContext(),"계정 생성에 실패하였습니다.",Toast.LENGTH_SHORT).show();
-                                return;
+                                    Toast.makeText(getApplicationContext(), "계정 생성에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                    finish(); //액티비티 닫기
+
+                                } else { // 로그인에 실패한 경우
+                                    Toast.makeText(getApplicationContext(), "계정 생성에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            } catch (Exception e) {
+                                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
                             }
-                        } catch (Exception e) {
-                            Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
                         }
-                    }
-                };
-                Sign sign = new Sign(userID, userPass, responseListener); //던져줄값 형식 맞춰서 만들어주기
-                RequestQueue signqueue = Volley.newRequestQueue(activity_sign.this); //던져줄값 던질 큐
-                signqueue.add(sign);// 큐로 던지기
+                    };
+                    Sign sign = new Sign(userID, userPass, responseListener); //던져줄값 형식 맞춰서 만들어주기
+                    RequestQueue signqueue = Volley.newRequestQueue(activity_sign.this); //던져줄값 던질 큐
+                    signqueue.add(sign);// 큐로 던지기
+                }else{
+                    Toast.makeText(getApplicationContext(), "ID와 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

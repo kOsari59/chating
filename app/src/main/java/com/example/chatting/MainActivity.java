@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                             if (success) { // 로그인에 성공한 경우
                                 String userID = jsonObject.getString("userID"); // 그 값중 userID 검색
                                 String userPass = jsonObject.getString("userPassword"); // 그 값중 userPassword 검색
-                                String userName = jsonObject.getString("userName");// 그 값중 userName 검색
+
 
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                                 bl = true;
