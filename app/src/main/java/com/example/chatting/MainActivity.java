@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                                 bl = true;
+
+                                Intent it = new Intent(MainActivity.this,RoomActivity.class);
+                                startActivity(it);
+
                             } else { // 로그인에 실패한 경우
                                 Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
                                 return;
