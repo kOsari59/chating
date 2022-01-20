@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +40,7 @@ public class RoomActivity extends AppCompatActivity {
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                tv_room.setText("");
                 String message= String.valueOf(et_msg.getText());
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
@@ -54,9 +55,8 @@ public class RoomActivity extends AppCompatActivity {
                             JSONArray jsonArray = jsonObject.getJSONArray("result"); //JsonObject JsonArray로 변경
                             for(int i = 0 ; i<jsonArray.length(); i++){
 
-                            // 로그인에 성공한 경우
-
-
+                                // 로그인에 성공한 경우
+                                jsonObject = jsonArray.getJSONObject(i);
 
                                 String userID = jsonObject.getString("userID"); // 그 값중 userID 검색
                                 String Msg = jsonObject.getString("Msg");
