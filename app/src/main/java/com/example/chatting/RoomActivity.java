@@ -52,11 +52,11 @@ public class RoomActivity extends AppCompatActivity {
                             boolean success = jsonObject.getBoolean("success"); // 그값중 success가 참이면 실행
 
                             if (success) { // 로그인에 성공한 경우
-                                String userID = jsonObject.getString("userID"); // 그 값중 userID 검색
+                                /*String userID = jsonObject.getString("userID"); // 그 값중 userID 검색
                                 String Msg = jsonObject.getString("Msg");
                                 String Mtime = jsonObject.getString("Mtime");
 
-                                tv_room.setText(userID+Msg+Mtime);
+                                tv_room.setText(userID+Msg+Mtime); */
 
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
 

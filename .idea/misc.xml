@@ -3,15 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kkm9h/StudioProjects/chating/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/kmc59/AndroidStudioProjects/chating/app/src/main/res/layout/activity_main.xml" value="0.24189463019250254" />
+        <entry key="..\:/Users/kmc59/AndroidStudioProjects/chating/app/src/main/res/layout/activity_sign.xml" value="0.75" />
         <entry key="..\:/Users/kmc59/AndroidStudioProjects/chatting/app/src/main/res/layout/activity_main.xml" value="0.31521739130434784" />
-        <entry key="..\:/Users/sungm/AndroidStudioProjects/chating/app/src/main/res/layout/activity_chat.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/sungm/AndroidStudioProjects/chating/app/src/main/res/layout/activity_main.xml" value="0.24003623188405798" />
-        <entry key="..\:/Users/sungm/AndroidStudioProjects/chating/app/src/main/res/layout/activity_room.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/sungm/AndroidStudioProjects/chating/app/src/main/res/layout/activity_sign.xml" value="0.264" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
