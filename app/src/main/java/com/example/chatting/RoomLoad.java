@@ -20,6 +20,7 @@ public class RoomLoad extends StringRequest { // 로그인 부분에서 던질 �
 
         map = new HashMap<>();
 
+
         map.put("userID",userID);
         map.put("Msg",Msg);
         map.put("Mtime", Mtime);
