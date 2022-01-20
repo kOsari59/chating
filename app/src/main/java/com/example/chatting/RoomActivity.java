@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.sql.Date;
@@ -50,21 +51,21 @@ public class RoomActivity extends AppCompatActivity {
 
                             JSONObject jsonObject = new JSONObject(response); //JSON으로 출력된 값을 불러오기
 
-                            if (true) { // 로그인에 성공한 경우
+                            JSONArray jsonArray = jsonObject.getJSONArray("result"); //JsonObject JsonArray로 변경
+                            for(int i = 0 ; i<jsonArray.length(); i++){
+
+                            // 로그인에 성공한 경우
+
+
                                 String userID = jsonObject.getString("userID"); // 그 값중 userID 검색
                                 String Msg = jsonObject.getString("Msg");
                                 String Mtime = jsonObject.getString("Mtime");
 
 
-                                tv_room.setText(userID+Msg+Mtime);
+                                tv_room.setText(tv_room.getText()+userID+Msg+Mtime);
 
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
 
-
-
-                            } else { // 로그인에 실패한 경우
-                                Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
-                                return;
                             }
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
