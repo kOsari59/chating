@@ -11,7 +11,7 @@ import java.util.Map;
 public class Idcheck extends StringRequest {
 
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://10.0.2.2/IDcheck.php";
+    final static private String URL = "http://1.241.64.177:5678/IDcheck.php";
     private Map<String, String> map;
 
 

@@ -62,7 +62,6 @@ public class RoomActivity extends AppCompatActivity {
                                 String Msg = jsonObject.getString("Msg");
                                 String Mtime = jsonObject.getString("Mtime");
 
-
                                 tv_room.setText(tv_room.getText()+userID+Msg+Mtime);
 
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
