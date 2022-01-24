@@ -1,6 +1,7 @@
 package com.example.chatting;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class SearchAdapter extends BaseAdapter {
         this.list = list;
         this.context = context;
         this.inflate = LayoutInflater.from(context);
+
     }
 
     @Override

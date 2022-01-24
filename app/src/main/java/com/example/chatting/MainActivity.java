@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                                 bl = true;
 
-                                Intent it = new Intent(MainActivity.this,RoomActivity.class);
+                                Intent it = new Intent(MainActivity.this,ChatActivity.class);
                                 startActivity(it);
 
                             } else { // 로그인에 실패한 경우

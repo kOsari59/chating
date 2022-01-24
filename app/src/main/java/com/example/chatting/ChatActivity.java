@@ -11,8 +11,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,54 +45,28 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        editSearch = (EditText) findViewById(R.id.editSearch);
         listView = (ListView) findViewById(R.id.listView);
         textView = (TextView) findViewById(R.id.label);
 
-
-        // 리스트를 생성한다.
         list = new ArrayList<String>();
 
         // 검색에 사용할 데이터을 미리 저장한다.
-        readChat();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+
 
         // 리스트의 모든 데이터를 arraylist에 복사한다.// list 복사본을 만든다.
         arraylist = new ArrayList<String>();
         arraylist.addAll(list);
 
+
         // 리스트에 연동될 아답터를 생성한다.
         adapter = new SearchAdapter(list, this);
-
+        Log.d("haja", String.valueOf(adapter.getCount()));
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
-
-        //리스트뷰 클릭시 데이터 넘기기
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
-
-        // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
-        editSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // input창에 문자를 입력할때마다 호출된다.
-                // search 메소드를 호출한다.
-                String text = editSearch.getText().toString();
-                search(text);
-            }
-        });
 
 
     }
@@ -116,7 +92,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         }
         // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
     }
 
     public void readChat() {
@@ -128,11 +104,6 @@ public class ChatActivity extends AppCompatActivity {
                     // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
                     JSONObject jsonObject = new JSONObject(response); //JSON으로 출력된 값을 불러오기
 
-                    JSONArray jsonArray = jsonObject.getJSONArray("result"); //JsonObject JsonArray로 변경
-                    for(int i = 0 ; i<jsonArray.length(); i++){
-
-                        // 로그인에 성공한 경우
-                        jsonObject = jsonArray.getJSONObject(i);
 
                         String user1 = jsonObject.getString("User1");
                         String user2 = jsonObject.getString("User2");
@@ -140,9 +111,8 @@ public class ChatActivity extends AppCompatActivity {
 
                         list.add(user1+user2+ID);
 
-                        //Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),user1+user2+ID,Toast.LENGTH_SHORT).show();
 
-                    }
 
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();

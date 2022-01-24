@@ -11,7 +11,7 @@ import java.util.Map;
 public class Chat extends StringRequest { // 로그인 부분에서 던질 부분 만들기
 
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://1.241.64.177:5678/Chat.php";
+    final static private String URL = "http://1.241.64.177:5678/Chats.php";
     private Map<String, String> map;
 
 
