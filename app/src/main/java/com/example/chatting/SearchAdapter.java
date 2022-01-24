@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by Administrator on 2017-08-07.
@@ -17,12 +18,12 @@ import java.util.List;
 public class SearchAdapter extends BaseAdapter {
 
     private Context context;
-    private List<String> list;
+    private ArrayList<String> list;
     private LayoutInflater inflate;
     private ViewHolder viewHolder;
 
     // 리스트뷰랑 연결해 주는 어뎁터
-    public SearchAdapter(List<String> list, Context context){
+    public SearchAdapter(ArrayList<String> list, Context context){
         this.list = list;
         this.context = context;
         this.inflate = LayoutInflater.from(context);
