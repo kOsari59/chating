@@ -19,7 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static String userID;
     EditText et_ID;
     EditText et_PASS;
     Button btlogin ,btsign;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userID = et_ID.getText().toString(); //id저장
+                userID = et_ID.getText().toString(); //id저장
                 String userPass = et_PASS.getText().toString(); // pw 저장
                 Response.Listener<String> responseListener = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
                     @Override
