@@ -64,11 +64,8 @@ public class ChatActivity extends AppCompatActivity {
 
         // 리스트에 연동될 아답터를 생성한다.
         adapter = new SearchAdapter(list, this);
-        Log.d("haja", String.valueOf(adapter.getCount()));
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
-
-
     }
 
     public void search(String charText) {
