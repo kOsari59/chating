@@ -5,13 +5,13 @@
       <map>
         <entry key="..\:/Users/kmc59/AndroidStudioProjects/chating/app/src/main/res/layout/activity_chat.xml" value="0.3392210144927536" />
         <entry key="..\:/Users/kmc59/AndroidStudioProjects/chating/app/src/main/res/layout/activity_main.xml" value="0.24189463019250254" />
+        <entry key="..\:/Users/kmc59/AndroidStudioProjects/chating/app/src/main/res/layout/activity_makechat.xml" value="0.33695652173913043" />
         <entry key="..\:/Users/kmc59/AndroidStudioProjects/chating/app/src/main/res/layout/activity_sign.xml" value="0.75" />
         <entry key="..\:/Users/kmc59/AndroidStudioProjects/chatting/app/src/main/res/layout/activity_main.xml" value="0.31521739130434784" />
-        <entry key="..\:/Users/sungm/AndroidStudioProjects/chating/app/src/main/res/layout/activity_chat.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

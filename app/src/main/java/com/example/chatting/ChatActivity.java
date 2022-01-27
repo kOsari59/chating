@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,13 +49,19 @@ public class ChatActivity extends AppCompatActivity {
         editSearch = (EditText) findViewById(R.id.editSearch);
         listView = (ListView) findViewById(R.id.listView);
         textView = (TextView) findViewById(R.id.label);
-
+        Button bt = (Button)findViewById(R.id.btn_addition);
         list = new ArrayList<String>();
 
         // 검색에 사용할 데이터을 미리 저장한다.
         readChat();
 
-
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iit = new Intent(ChatActivity.this,makechat.class);
+                startActivity(iit);
+            }
+        });
 
     }
 
@@ -80,6 +87,7 @@ public class ChatActivity extends AppCompatActivity {
         signqueue.add(chat);// 큐로 던지기
 
     }
+
 
     public void addList(JSONObject a){
         try {
