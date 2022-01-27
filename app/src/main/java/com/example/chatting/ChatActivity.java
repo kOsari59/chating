@@ -60,6 +60,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent iit = new Intent(ChatActivity.this,makechat.class);
                 startActivity(iit);
+                finish();
             }
         });
 
