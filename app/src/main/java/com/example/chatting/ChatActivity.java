@@ -50,11 +50,11 @@ public class ChatActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.label);
 
         list = new ArrayList<String>();
+
         // 검색에 사용할 데이터을 미리 저장한다.
         readChat();
 
 
-        // 리스트에 연동될 아답터를 생성한다.
 
     }
 
