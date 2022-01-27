@@ -16,12 +16,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class makechat extends AppCompatActivity {
     EditText et_idsearch;
     Button btn_search,btn_start,btn_cc;
     Boolean idcheck=false;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,49 +84,49 @@ public class makechat extends AppCompatActivity {
                                 // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
                                 System.out.println("hongchul" + response);
 
-                                JSONObject jsonObject = new JSONObject(response); //JSON으로 출력된 값을 불러오기
+                                JSONObject jsonObject = new JSONObject(response);
 
-                                Log.d("nana", "onResponse: ");
+                                id = jsonObject.getString("ID");
 
-                                Response.Listener<String> responseListener = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
-                                    @Override
-                                    public void onResponse(String response) {
-                                        try {
-                                            // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
-                                            System.out.println("hongchul" + response);
+                                id ="ref"+id;
 
-
-                                        } catch (Exception e) {
-                                            Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                };
-
-                                CreateRoom cr = new CreateRoom("ref7", responseListener); //던져줄값 형식 맞춰서 만들어주기
-                                RequestQueue idqueue = Volley.newRequestQueue(makechat.this); //던져줄값 던질 큐
-                                idqueue.add(cr);// 큐로 던지기
-
+                                ss(id);
                             } catch (Exception e) {
                                 Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
-                                Log.d("nana", e.toString());
                             }
                         }
                     };
-
                     mchat ic = new mchat(userID,user2, responseListener); //던져줄값 형식 맞춰서 만들어주기
                     RequestQueue idqueue = Volley.newRequestQueue(makechat.this); //던져줄값 던질 큐
                     idqueue.add(ic);// 큐로 던지기
 
-                    /*Intent it = new Intent(makechat.this,ChatActivity.class);
+                    Intent it = new Intent(makechat.this,ChatActivity.class);
                     startActivity(it);
 
-                    finish();*/
+                    finish();
                 }else{
                     return;
                 }
 
             }
         });
+    }
 
+    void ss(String id ){
+        Response.Listener<String> responseListener1 = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
+            @Override
+            public void onResponse(String response) {
+                try {
+                    // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
+                    System.out.println("hongchul" + response);
+                    Log.d("nana", response);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        CreateRoom cr = new CreateRoom(id, responseListener1); //던져줄값 형식 맞춰서 만들어주기
+        RequestQueue idqueue1 = Volley.newRequestQueue(makechat.this); //던져줄값 던질 큐
+        idqueue1.add(cr);// 큐로 던지기
     }
 }
