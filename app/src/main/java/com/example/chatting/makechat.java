@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -83,7 +84,7 @@ public class makechat extends AppCompatActivity {
 
                                 JSONObject jsonObject = new JSONObject(response); //JSON으로 출력된 값을 불러오기
 
-                                String id = jsonObject.getString("ID");
+                                Log.d("nana", "onResponse: ");
 
                                 Response.Listener<String> responseListener = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
                                     @Override
@@ -99,12 +100,13 @@ public class makechat extends AppCompatActivity {
                                     }
                                 };
 
-                                CreateRoom cr = new CreateRoom(id, responseListener); //던져줄값 형식 맞춰서 만들어주기
+                                CreateRoom cr = new CreateRoom("ref7", responseListener); //던져줄값 형식 맞춰서 만들어주기
                                 RequestQueue idqueue = Volley.newRequestQueue(makechat.this); //던져줄값 던질 큐
                                 idqueue.add(cr);// 큐로 던지기
 
                             } catch (Exception e) {
                                 Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
+                                Log.d("nana", e.toString());
                             }
                         }
                     };
@@ -113,10 +115,10 @@ public class makechat extends AppCompatActivity {
                     RequestQueue idqueue = Volley.newRequestQueue(makechat.this); //던져줄값 던질 큐
                     idqueue.add(ic);// 큐로 던지기
 
-                    Intent it = new Intent(makechat.this,ChatActivity.class);
+                    /*Intent it = new Intent(makechat.this,ChatActivity.class);
                     startActivity(it);
 
-                    finish();
+                    finish();*/
                 }else{
                     return;
                 }

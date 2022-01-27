@@ -22,24 +22,29 @@
         android:id="@+id/btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="16dp"
         android:text="검색"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="291dp" />
+        app:layout_constraintStart_toEndOf="@+id/et_idsearch"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="344dp"
         android:text="방 만들기"
-        tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="351dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_cc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="344dp"
         android:text="취소"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="344dp" />
+        app:layout_constraintStart_toEndOf="@+id/btn_start"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

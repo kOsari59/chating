@@ -19,8 +19,8 @@ public class mchat extends StringRequest {
         super(Request.Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("user1",user1);
-        map.put("user2",user2);
+        map.put("userID1",user1);
+        map.put("userID2",user2);
 
 
     }
