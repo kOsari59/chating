@@ -102,7 +102,6 @@ public class ChatActivity extends AppCompatActivity {
                             Intent iit = new Intent(ChatActivity.this,RoomActivity.class);
                             iit.putExtra("id",id.get(i));
                             startActivity(iit);
-                            finish();
                         }
                     });
 
