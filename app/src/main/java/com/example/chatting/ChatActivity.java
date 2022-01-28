@@ -64,6 +64,14 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.R)
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("nana", list.get(i));
+            }
+        });
+
     }
 
     public void readChat() {
