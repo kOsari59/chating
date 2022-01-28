@@ -3,6 +3,8 @@ package com.example.chatting;
 
 import static com.example.chatting.MainActivity.userID;
 
+import static java.lang.Thread.sleep;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,9 +30,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.InputStream;
+
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -40,6 +42,11 @@ public class ChatActivity extends AppCompatActivity {
     private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
     private ArrayList<String> arraylist;
     private TextView textView;
+    static ArrayList<String> id=new ArrayList<>();
+    String User1=null ; // 그 값중 userID 검색
+    String User2;
+    String ID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,40 +59,53 @@ public class ChatActivity extends AppCompatActivity {
         Button bt = (Button)findViewById(R.id.btn_addition);
         list = new ArrayList<String>();
 
-        // 검색에 사용할 데이터을 미리 저장한다.
-        readChat();
-
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iit = new Intent(ChatActivity.this,makechat.class);
-                startActivity(iit);
-                finish();
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("nana", list.get(i));
-            }
-        });
-
-    }
-
-    public void readChat() {
-
         Response.Listener<String> responseListener = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
             @Override
             public void onResponse(String response) {
                 try {
                     // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
                     JSONObject jsonObject = new JSONObject(response); //JSON으로 출력된 값을 불러오기
-                    addList(jsonObject);
-                    adapter = new SearchAdapter(list, ChatActivity.this);
+                    JSONArray jsonArray = jsonObject.getJSONArray("result"); //JsonObject JsonArray로 변경
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        // 로그인에 성공한 경우
+                        jsonObject = jsonArray.getJSONObject(i);
+
+                        User1 = jsonObject.getString("User1"); // 그 값중 userID 검색
+                        User2 = jsonObject.getString("User2");
+                        ID = jsonObject.getString("ID");
+
+                        list.add(ID+"|"+User1+"|"+User2);
+                        id.add(ID);
+                    }
+
+                    adapter = new SearchAdapter(list,ChatActivity.this);
                     // 리스트뷰에 아답터를 연결한다.
                     listView.setAdapter(adapter);
+
+                    bt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent iit = new Intent(ChatActivity.this,makechat.class);
+                            startActivity(iit);
+                            finish();
+                        }
+                    });
+
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.R)
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            Log.d("tag",String.valueOf(id.get(i)));
+                            Intent iit = new Intent(ChatActivity.this,RoomActivity.class);
+                            iit.putExtra("id",id.get(i));
+                            startActivity(iit);
+                            finish();
+                        }
+                    });
+
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
                 }
@@ -96,29 +116,4 @@ public class ChatActivity extends AppCompatActivity {
         signqueue.add(chat);// 큐로 던지기
 
     }
-
-
-    public void addList(JSONObject a){
-        try {
-            JSONObject ab = a;
-            JSONArray jsonArray = ab.getJSONArray("result"); //JsonObject JsonArray로 변경
-            for (int i = 0; i < jsonArray.length(); i++) {
-
-                // 로그인에 성공한 경우
-                ab = jsonArray.getJSONObject(i);
-
-                String User1 = ab.getString("User1"); // 그 값중 userID 검색
-                String User2 = ab.getString("User2");
-                String ID = ab.getString("ID");
-
-                list.add(User1+User2+ID);
-                Log.d("TAG", list.get(i));
-
-            }
-
-        }catch (Exception e){
-            Log.d("TAG", e.toString());
-        }
-    }
-
 }

@@ -1,5 +1,7 @@
 package com.example.chatting;
 
+import static com.example.chatting.MainActivity.userID;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -26,6 +28,7 @@ public class RoomActivity extends AppCompatActivity {
     TextView tv_room;
     EditText et_msg;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,7 @@ public class RoomActivity extends AppCompatActivity {
         btn_send=findViewById(R.id.btn_send);
         tv_room=findViewById(R.id.tv_room);
         et_msg=findViewById(R.id.et_msg);
-
+        Log.d("haha", "onCreate: ");
         long now = System.currentTimeMillis();
 
         btn_send.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +45,7 @@ public class RoomActivity extends AppCompatActivity {
             public void onClick(View view) {
                 tv_room.setText("");
                 String message= String.valueOf(et_msg.getText());
+                String id = "ref"+getIntent().getStringExtra("id");
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() { //php로 데이터를 보내고 보낸 데이터를 사용하는 부분
                     @Override
@@ -72,7 +76,7 @@ public class RoomActivity extends AppCompatActivity {
                         }
                     }
                 };
-                RoomLoad rl = new RoomLoad("123", message,  String.valueOf(new Date(now)), responseListener); //던져줄값 형식 맞춰서 만들어주기
+                RoomLoad rl = new RoomLoad(userID, id,message,  String.valueOf(new Date(now)), responseListener); //던져줄값 형식 맞춰서 만들어주기
                 RequestQueue roomqueue = Volley.newRequestQueue(RoomActivity.this); //던져줄값 던질 큐
                 roomqueue.add(rl);// 큐로 던지기
             }

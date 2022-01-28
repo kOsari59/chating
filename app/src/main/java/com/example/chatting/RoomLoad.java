@@ -15,12 +15,12 @@ public class RoomLoad extends StringRequest { // 로그인 부분에서 던질 �
     private Map<String, String> map;
 
 
-    public RoomLoad(String userID, String Msg, String Mtime,Response.Listener<String> listener) {
+    public RoomLoad(String userID, String ID,String Msg, String Mtime,Response.Listener<String> listener) {
         super(Request.Method.POST, URL, listener, null);
 
         map = new HashMap<>();
 
-
+        map.put("ID",ID);
         map.put("userID",userID);
         map.put("Msg",Msg);
         map.put("Mtime", Mtime);
