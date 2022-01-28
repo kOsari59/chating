@@ -23,14 +23,17 @@ import org.json.JSONObject;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 
 public class RoomActivity extends AppCompatActivity {
     Button btn_send;
     TextView tv_room;
     EditText et_msg;
     Handler handler = new Handler();
+    ArrayList<String> list=new ArrayList<>();
 
     public class ThreadClass extends Thread{
+
         String id;
 
         ThreadClass(String id) {
@@ -59,9 +62,12 @@ public class RoomActivity extends AppCompatActivity {
                                     String Msg = jsonObject.getString("Msg");
                                     String Mtime = jsonObject.getString("Mtime");
 
-                                    tv_room.setText(userID + Msg + Mtime);
+                                    list.add(Mtime+" | "+Msg+" | "+userID);
 
+                                }
 
+                                for(int i=0;i<list.size();i++){
+                                    tv_room.setText(tv_room.getText()+"\n"+list.get(i));
                                 }
                             } catch (Exception e) {
                                 Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
