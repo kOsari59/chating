@@ -65,7 +65,7 @@ public class RoomActivity extends AppCompatActivity {
                                     list.add(Mtime+" | "+Msg+" | "+userID);
 
                                 }
-
+                                tv_room.setText("");
                                 for(int i=0;i<list.size();i++){
                                     tv_room.setText(tv_room.getText()+"\n"+list.get(i));
                                 }
